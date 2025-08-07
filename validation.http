@@ -1,32 +1,88 @@
+### Customer Management API - HTTP Test Requests
+
+# Set variables for testing
+@baseUrl = http://localhost:8000
 @customer_id = 9e56a0cd-00a6-4386-8412-e8d8ca48da16
 
-### List all records
-GET http://localhost:8000/customers
+### Health Check - Root endpoint
+GET {{baseUrl}}/
 
-### Create New Record
-POST http://localhost:8000/customers
+### List all customers
+GET {{baseUrl}}/customers
+
+### Create a new customer
+POST {{baseUrl}}/customers
+Content-Type: application/json
+
+{
+    "firstname": "Israel",
+    "lastname": "Ekpo",
+    "age": 35
+}
+
+### Create another customer
+POST {{baseUrl}}/customers
 Content-Type: application/json
 
 {
     "firstname": "Jason",
-    "lastname" : "Bourne",
-    "age" : 40 
+    "lastname": "Bourne",
+    "age": 40 
 }
 
-### Retrieve Single record
-GET http://localhost:8000/customers/{{customer_id}}
+### Get a specific customer by ID
+GET {{baseUrl}}/customers/{{customer_id}}
 
-### Delete Single record
-DELETE http://localhost:8000/customers/{{customer_id}}
-
-
-### Update Single record
-PUT http://localhost:8000/customers/{{customer_id}}
+### Update a customer completely
+PUT {{baseUrl}}/customers/{{customer_id}}
 Content-Type: application/json
 
 {
     "firstname": "Jason",
-    "lastname" : "Bourne",
-    "age" : 40 
+    "lastname": "Bourne",
+    "age": 41
 }
 
+### Partially update a customer
+PUT {{baseUrl}}/customers/{{customer_id}}
+Content-Type: application/json
+
+{
+    "age": 42
+}
+
+### Delete a customer
+DELETE {{baseUrl}}/customers/{{customer_id}}
+
+### Test validation error - invalid age
+POST {{baseUrl}}/customers
+Content-Type: application/json
+
+{
+    "firstname": "Invalid",
+    "lastname": "Customer",
+    "age": -5
+}
+
+### Test validation error - empty firstname
+POST {{baseUrl}}/customers
+Content-Type: application/json
+
+{
+    "firstname": "",
+    "lastname": "Customer",
+    "age": 25
+}
+
+### Test validation error - age too high
+POST {{baseUrl}}/customers
+Content-Type: application/json
+
+{
+    "firstname": "Old",
+    "lastname": "Person",
+    "age": 200
+}
+
+### Test 404 error - non-existent customer
+GET {{baseUrl}}/customers/non-existent-id
