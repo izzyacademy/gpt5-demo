@@ -9,8 +9,9 @@ This REST endpoint will support CRUD operations to list, create, retrieve, updat
     "id": "e53f674e-89b8-459a-b16b-9e8d7987d5d8",
     "firstname": "Israel",
     "lastname" : "Ekpo",
-    "email" : "israel@example.ai"
+    "age" : 35
 }
+
 ````
 
 - add the necessary Python dependencies using uv
@@ -27,3 +28,5 @@ Cosmos DB connection string will be retrieved from environment variable `COSMOS_
 The Cosmos DB database and container/collection will be retrieved from the environment variables `COSMOS_DATABASE` and `COSMOS_CONTAINER` respectively.
 
 We are using `pydantic` version 2.11.7, `fastapi` version 0.116.1 and `azure-cosmos` 4.9.0
+
+Also create tests for the application and make sure that it works before you finalize the code changes.
