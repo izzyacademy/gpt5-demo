@@ -2,6 +2,9 @@
 
 A FastAPI-based REST API for managing customer records with Azure Cosmos DB integration. This application provides full CRUD operations for customer data with automatic validation and error handling.
 
+## How to Test
+The generated application uses the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension by Huachao Mao.
+
 ## Features
 
 - **Full CRUD Operations**: Create, Read, Update, and Delete customer records
